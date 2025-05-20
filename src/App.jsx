@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
+
 import Home from './components/Home';
 import Nosotros from './components/Nosotros';
 import OfertaEducativa from './components/OfertaEducativa';
 import Servicios from './components/Servicios';
 import Contacto from './components/Contacto';
+import Footer from "./components/Footer";
 import './index.css'; // Asegúrate de tener tailwind y estilos globales
 
 function NavBar() {
@@ -14,24 +16,69 @@ function NavBar() {
     location.pathname === path
       ? 'text-blue-600 font-bold border-b-2 border-blue-600 pb-1'
       : 'hover:text-blue-600 transition';
+  
+  const navLinkClass = ({ isActive }) =>
+    `transition duration-150 ease-in-out hover:text-[rgb(0,154,206)] hover:underline underline-offset-4 ${
+      isActive ? 'text-[rgb(0,154,206)] underline' : ''
+  }`;
 
   return (
-    <nav className="bg-white shadow fixed w-full top-0 z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
-          {/* Logo desde public */}
-          <img src="/logo.jpeg" alt="Logo" className="h-10 w-auto" />
-          <span className="text-xl font-bold text-[#0D254A]"> San Gerardo</span>
-        </Link>
-        <div className="space-x-6 text-sm md:text-base">
-          <Link to="/" className={linkStyle('/')}>Inicio</Link>
-          <Link to="/nosotros" className={linkStyle('/nosotros')}>Nosotros</Link>
-          <Link to="/oferta-educativa" className={linkStyle('/oferta-educativa')}>Oferta Educativa</Link>
-          <Link to="/servicios" className={linkStyle('/servicios')}>Servicios</Link>
-          <Link to="/contacto" className={linkStyle('/contacto')}>Contacto</Link>
+      <header className="z-30 w-full py-3 md:py-5">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div
+          className="relative flex flex-wrap items-center justify-between gap-y-4 rounded-2xl px-4 py-3 shadow-lg after:absolute after:inset-0 after:-z-10 after:backdrop-blur-sm"
+          style={{
+            backgroundColor: 'rgb(1, 38, 70)',
+            boxShadow: '0 4px 10px rgba(245, 94, 16, 0.4)',
+          }}
+        >
+          {/* Logo + Título */}
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="Logo de San Gerardo"
+              className="w-12 h-12 object-contain"
+            />
+            <span className="text-white text-lg font-semibold tracking-wide">
+              Colegio San Gerardo
+            </span>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex flex-wrap justify-center gap-4 text-gray-300 font-medium text-sm">
+            <NavLink to="/" className={navLinkClass}>Inicio</NavLink>
+            <NavLink to="/nosotros" className={navLinkClass}>Nosotros</NavLink>
+            <NavLink to="/oferta-educativa" className={navLinkClass}>Oferta Educativa</NavLink>
+            <NavLink to="/servicios" className={navLinkClass}>Servicios</NavLink>
+            <NavLink to="/contacto" className={navLinkClass}>Contacto</NavLink>
+          </nav>
+
+          {/* Botones */}
+          <div className="flex flex-wrap justify-center gap-2">
+            <NavLink
+              to="/signin"
+              className="rounded-full px-5 py-2 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{
+                backgroundColor: 'rgb(245, 94, 16)',
+                boxShadow: '0 4px 10px rgba(245, 94, 16, 0.4)',
+              }}
+            >
+              Iniciar sesión
+            </NavLink>
+            <NavLink
+              to="/signup"
+              className="rounded-full px-5 py-2 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{
+                backgroundColor: 'rgb(245, 94, 16)',
+                boxShadow: '0 4px 10px rgba(245, 94, 16, 0.4)',
+              }}
+            >
+              Registrarse
+            </NavLink>
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
 
@@ -59,8 +106,10 @@ function WhatsAppFloatingButton() {
 function Layout() {
   return (
     <>
-      <NavBar />
-      <div className="pt-20">
+      <div className="select-none cursor-default">
+        <NavBar />
+      </div>
+      <div className="select-none cursor-default">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/nosotros" element={<Nosotros />} />
@@ -68,6 +117,9 @@ function Layout() {
           <Route path="/servicios" element={<Servicios />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
+      </div>
+      <div className="select-none cursor-default">
+        <Footer />
       </div>
       <WhatsAppFloatingButton />
     </>

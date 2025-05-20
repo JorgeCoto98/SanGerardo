@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 
 export default function Nosotros() {
   return (
-    <section className="py-16 bg-[#f4f8fd] px-4">
+    <section className="py-16 bg-[#f4f8fd] px-4"
+      style={{
+      backgroundColor: 'rgb(141,201,230)',
+      boxShadow: '0 4px 10px rgba(245, 94, 16, 0.4)',
+    }}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
         
         {/* Imagen animada */}

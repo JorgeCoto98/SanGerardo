@@ -3,6 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { motion } from "framer-motion";
 
 const slides = [
   {
@@ -96,7 +97,9 @@ export default function OfertaEducativa() {
       </section>
 
       {/* Sección de niveles */}
-      <section className="py-16 bg-[#f4f8fd]">
+      <section className="py-16 bg-[#f4f8fd]"
+        style={{backgroundColor: "rgb(141,201,230)"}}
+      >
         <div className="max-w-5xl mx-auto px-4 grid gap-8 grid-cols-1 md:grid-cols-3">
           {niveles.map((item, i) => (
             <a
@@ -113,21 +116,31 @@ export default function OfertaEducativa() {
       </section>
 
       {/* Contenido adicional simulado */}
-      <section className="py-16 text-[#0D254A] px-4 md:px-16">
-        <h2 className="text-3xl font-bold mb-6">Más Información</h2>
-        <p className="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed
-          posuere, nisl in consectetur vulputate, orci metus malesuada urna, at
-          pellentesque lorem neque ac turpis. Vestibulum ante ipsum primis in faucibus
-          orci luctus et ultrices posuere cubilia curae; Integer sit amet sapien
-          venenatis, facilisis nulla eu, tincidunt nunc.
-        </p>
-        <p>
-          Phasellus hendrerit tellus eget dolor tempus, nec vulputate purus elementum.
-          Praesent ac nibh vitae lorem rutrum semper. Duis sed risus sit amet arcu
-          fermentum laoreet.
-        </p>
-      </section>
+      <motion.section
+        className="py-16 px-4 md:px-16 flex justify-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      >
+        <div className="bg-[#fef9f4]/80 backdrop-blur-md rounded-2xl shadow-xl p-8 max-w-4xl w-full">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#0D254A] text-center">
+            Más Información
+          </h2>
+          <p className="text-gray-700 mb-4 text-lg leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed
+            posuere, nisl in consectetur vulputate, orci metus malesuada urna, at
+            pellentesque lorem neque ac turpis. Vestibulum ante ipsum primis in faucibus orci
+            luctus et ultrices posuere cubilia curae; Integer sit amet sapien venenatis,
+            facilisis nulla eu, tincidunt nunc.
+          </p>
+          <p className="text-gray-700 text-lg leading-relaxed">
+            Phasellus hendrerit tellus eget dolor tempus, nec vulputate purus elementum.
+            Praesent ac nibh vitae lorem rutrum semper. Duis sed risus sit amet arcu fermentum
+            laoreet.
+          </p>
+        </div>
+      </motion.section>
     </div>
   );
 }

@@ -27,12 +27,17 @@ export default function Servicios() {
           {['Talleres', 'Transporte', 'Uniformes', 'Trabaja con Nosotros', 'Woot - it'].map((modulo, index) => (
             <span
               key={index}
-              className="bg-[#F0533C] text-white text-sm font-semibold px-4 py-2 rounded-full shadow hover:scale-105 transition cursor-default"
+              className="text-white text-sm font-semibold px-5 h-10 min-w-[150px] flex items-center justify-center rounded-full shadow-md transition transform hover:scale-105 hover:shadow-[0_0_20px_rgba(245,94,16,0.6)] cursor-default"
+              style={{
+                backgroundColor: 'rgb(245, 94, 16)',
+                boxShadow: '0 4px 10px rgba(245, 94, 16, 0.4)',
+              }}
             >
               {modulo}
             </span>
           ))}
         </div>
+
       </motion.div>
     </section>
   );
