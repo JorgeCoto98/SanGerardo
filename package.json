@@ -2,8 +2,9 @@
   "name": "colegio-san-gerardo-demo",
   "version": "1.0.0",
   "scripts": {
-    "start": "react-scripts start",
-    "build-css": "npx tailwindcss -i ./src/index.css -o ./src/tailwind-output.css --watch"
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "build-css": "npx tailwindcss -i ./src/index.css -o ./src/tailwind-output.css --watch"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
